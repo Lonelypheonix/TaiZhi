@@ -1,0 +1,9 @@
+Flask
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+torch
+scikit-learn
+psutil
