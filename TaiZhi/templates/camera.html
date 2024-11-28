@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timed Image Capture - Taizhi</title>
+    <title>Timed Image Capture - Taizhi 臺智</title>
     <!-- Include Bootstrap CSS and other necessary links -->
     <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -66,7 +66,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">Taizhi</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">Taizhi 臺智</a>
         </div>
         <div class="server-time">
             <h5><small>Server Time <br>{{ time }}</small></h5>
@@ -99,6 +99,7 @@
                     <div class="text-center mt-4">
                         <button id="start-btn" class="btn btn-primary">Start Capturing</button>
                         <button id="test-btn" class="btn btn-secondary">Test for Anomaly</button>
+                        <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
                     </div>
                     <p id="status" class="text-center mt-3 text-info"></p>
                 </div>
