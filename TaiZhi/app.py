@@ -17,7 +17,7 @@ import logging
 import joblib
 import base64
 from torchvision import models, transforms
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, Response, jsonify
 import os
 import pandas as pd
 import torch
@@ -27,6 +27,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+import cv2
+import datetime
+import os
+import threading
+import time
+import cv2
+import atexit
+import logging
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = 'your_secret_key'  # Necessary for flashing messages
@@ -57,6 +65,14 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
+cap = cv2.VideoCapture(0)
+# 导入 threading 模块
+import threading
+
+# 创建一个全局的线程锁
+camera_lock = threading.Lock()
+capturing_in_progress = False
+capturing_lock = threading.Lock()
 
 # Utility function to check allowed file extensions
 def allowed_file(filename):
@@ -84,23 +100,93 @@ def home():
 @app.route("/camera", methods=['GET', 'POST'])
 def camera():
     templateData = template(title="Taizhi", text="")
-    if request.method == 'POST':
-        # Receive the base64 image data
-        image_data = request.form['image_data']
-        if image_data.startswith('data:image'):
-            # Extract the base64 content after the comma
-            image_base64 = image_data.split(',')[1]
-            
-            # Decode and save the image
-            img_bytes = base64.b64decode(image_base64)
-            filename = datetime.datetime.now().strftime("%Y%m%d%H%M%S") + ".png"
-            file_path = os.path.join(app.config['UPLOAD_IMGFOLDER'], filename)
-            with open(file_path, "wb") as f:
-                f.write(img_bytes)
-            return "Image saved successfully.", 200
-        else:
-            return "Invalid image data.", 400
     return render_template("camera.html", **templateData)
+
+# 视频流生成器
+def gen_frames():
+    while True:
+        with camera_lock:
+            success, frame = cap.read()
+        if not success:
+            break
+        else:
+            # 将图像编码为 JPEG 格式
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            # 使用 multipart/x-mixed-replace 协议传输视频流
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+# 视频流路由
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen_frames(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+def capture_images(interval, duration):
+    if not cap.isOpened():
+        print("Cannot open camera")
+        return
+
+    start_time = time.time()
+    end_time = start_time + duration
+    count = 0
+
+    global capturing_in_progress
+    with capturing_lock:
+        capturing_in_progress = True
+
+    save_dir = app.config['UPLOAD_IMGFOLDER']
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+
+    while time.time() < end_time:
+        with camera_lock:
+            ret, frame = cap.read()
+        if not ret:
+            print("Can't receive frame (stream end?). Exiting ...")
+            break
+        filename = f'capture_{count}.png'
+        filepath = os.path.join(save_dir, filename)
+        cv2.imwrite(filepath, frame)
+        print(f"Saved {filepath}")
+        count += 1
+        time.sleep(interval)
+
+    print("Image capturing completed.")
+    with capturing_lock:
+        capturing_in_progress = False
+
+@app.route('/capture_status')
+def capture_status():
+    with capturing_lock:
+        status = capturing_in_progress
+    return jsonify({'capturing': status})
+
+# 开始捕获图像的路由
+@app.route('/start_capture', methods=['POST'])
+def start_capture():
+    data = request.get_json()
+    try:
+        interval = float(data.get('interval', 0))
+        duration = float(data.get('duration', 0))
+
+        if interval <= 0 or duration <= 0:
+            return jsonify({'message': 'Please provide valid positive numbers for both fields.'}), 400
+
+        threading.Thread(target=capture_images, args=(interval, duration)).start()
+        return jsonify({'message': 'Image capturing started.'})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'message': 'An error occurred while starting image capture.'}), 500
+
+# 应用关闭时释放摄像头资源
+@atexit.register
+def cleanup():
+    global cap
+    cap.release()
+    cv2.destroyAllWindows()
 
 # New route for uploading CSV files
 @app.route("/upload", methods=['GET', 'POST'])
