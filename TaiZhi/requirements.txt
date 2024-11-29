@@ -7,3 +7,5 @@ plotly
 torch
 scikit-learn
 psutil
+torchvision
+opencv-python
