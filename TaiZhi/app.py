@@ -45,6 +45,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB limit
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['PLOTS_FOLDER'] = 'static/plots'
 app.config['UPLOAD_IMGFOLDER'] = 'static/images'
+app.config['DATASET_FOLDER'] = 'static/files'
 # Ensure upload and plots directories exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['UPLOAD_IMGFOLDER'], exist_ok=True)
@@ -90,12 +91,76 @@ def template(title="Taizhi", text="Taizhi has started"):
         'text': text
     }
     return templateDate
+#working main part
+# @app.route("/")
+# def home():
+#     templateData = template(title="Taizhi", text="")
+#     return render_template('main.html', **templateData)
 
+import pandas as pd
 @app.route("/")
 def home():
-    templateData = template(title="Taizhi", text="")
-    return render_template('main.html', **templateData)
+    try:
+        # Paths to the CSV files
+        inverter_file = os.path.join(app.config['DATASET_FOLDER'], 'inverter_data.csv')
+        weather_file = os.path.join(app.config['DATASET_FOLDER'], 'weather_data.csv')
 
+        # Load CSV files
+        inverter_df = pd.read_csv(inverter_file)
+        weather_df = pd.read_csv(weather_file)
+
+        # Extract headers and first 10 rows
+        inverter_headers = inverter_df.columns.tolist()
+        inverter_data = inverter_df.head(10).values.tolist()
+        weather_headers = weather_df.columns.tolist()
+        weather_data = weather_df.head(10).values.tolist()
+
+        # Render main.html with template data and CSV data
+        templateData = template(title="Taizhi", text="")
+        return render_template(
+            'main.html',
+            **templateData,
+            inverter_headers=inverter_headers,
+            inverter_data=inverter_data,
+            weather_headers=weather_headers,
+            weather_data=weather_data
+        )
+    except Exception as e:
+        return f"Error loading CSV files: {str(e)}", 500
+
+
+# @app.route('/')
+# def index():
+#     try:
+#         # Paths to the CSV files
+#         inverter_file = os.path.join(app.config['DATASET_FOLDER'], 'inverter_data.csv')
+#         weather_file = os.path.join(app.config['DATASET_FOLDER'], 'weather_data.csv')
+
+#         # Load CSV files
+#         inverter_df = pd.read_csv(inverter_file)
+#         weather_df = pd.read_csv(weather_file)
+
+#         # Extract headers and first 10 rows
+#         inverter_headers = inverter_df.columns.tolist()
+#         inverter_data = inverter_df.head(10).values.tolist()
+#         weather_headers = weather_df.columns.tolist()
+#         weather_data = weather_df.head(10).values.tolist()
+
+#         print("Inverter Headers:", inverter_headers)
+#         print("Inverter Data (First 10 Rows):", inverter_data)
+#         print("Weather Headers:", weather_headers)
+#         print("Weather Data (First 10 Rows):", weather_data)
+
+#         # Render main.html with data
+#         return render_template(
+#             'main.html',
+#             inverter_headers=inverter_headers,
+#             inverter_data=inverter_data,
+#             weather_headers=weather_headers,
+#             weather_data=weather_data
+#         )
+#     except Exception as e:
+#         return f"Error loading CSV files: {str(e)}", 500
 
 @app.route("/camera", methods=['GET', 'POST'])
 def camera():
@@ -291,7 +356,25 @@ def test_anomaly():
     # Return results
     return render_template("anomaly_results.html", predictions=predictions,**templateData)
 
+@app.route('/delete_images', methods=['POST'])
+def delete_images():
+    try:
+        # Folder containing captured images
+        image_folder = app.config['UPLOAD_IMGFOLDER']
 
+        # Get all images in the folder
+        image_paths = glob.glob(os.path.join(image_folder, "*.png"))
+
+        # Delete each image
+        for image_path in image_paths:
+            os.remove(image_path)
+
+        logging.info("All images deleted successfully.")
+        return jsonify({'message': 'Images deleted successfully.'}), 200
+    except Exception as e:
+        logging.error(f"Error deleting images: {e}")
+        return jsonify({'message': f'Error deleting images: {e}'}), 500
+    
 class CNNLSTMModel(nn.Module):
     def __init__(self, input_shape, num_inverters):
         super(CNNLSTMModel, self).__init__()
@@ -776,28 +859,14 @@ def process_csv(inverter_filepath, weather_filepath):
     return results
 
 
+
+
 # rout eto display time
 @app.route("/time")
 def get_time():
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     return {"time": current_time}
 # Existing routes continued...
-
-@app.route("/volnix_lw", methods=['POST'])  # When did volnix last water
-def check_last_watered():
-    # Implement functionality or remove if not needed
-    # Example placeholder
-    last_watered_time = "2024-04-26 10:30:00"  # Replace with actual logic
-    templateData = template(text=f"Volnix was last watered at {last_watered_time}")
-    return render_template('main.html', **templateData)
-
-@app.route("/manual", methods=['POST'])  # Water the plants manually once
-def action2():
-    # Implement functionality or remove if not needed
-    # Example placeholder
-    message = "Volnix has been turned on manually once"
-    templateData = template(text=message)
-    return render_template('main.html', **templateData)
 
 # Read IP from 'ip.txt' and run the app
 if __name__ == "__main__":

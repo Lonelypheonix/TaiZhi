@@ -98,12 +98,14 @@
                 </tbody>
             </table>
         </div>
+        
         <div class="row justify-content-center mt-5">
             <div class="col-md-6 text-center">
                 <a href="/camera" class="btn btn-primary">Go Back</a>
                 <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
             </div>
         </div>
+        
     </section>
 
     <!-- Loading Spinner -->
@@ -123,34 +125,8 @@
         };
     </script>
     <script src="/static/js/scripts.js"></script>
+
 </body>
 </html>
 
 
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anomaly Detection Results</title>
-</head>
-<body>
-    <h1>Anomaly Detection Results</h1>
-    <table border="1">
-        <tr>
-            <th>Image</th>
-            <th>Prediction</th>
-        </tr>
-        {% for image_name, image_path, prediction in predictions %}
-        <tr>
-            <td>
-                <img src="{{ url_for('static', filename='images/' + image_name) }}" alt="{{ image_name }}" width="150">
-            </td>
-            <td>{{ prediction }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <button onclick="window.location.href='/camera'">Go Back</button>
-</body>
-</html> -->

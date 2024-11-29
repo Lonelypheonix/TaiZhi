@@ -98,7 +98,7 @@
                     </div>
                     <p></p>
                     <div class="volnix-btn text-center">
-                        <a href="{{ url_for('test_model') }}" class="btn btn-primary">Yield Predict</a>
+                        <a href="{{ url_for('test_model') }}" class="btn btn-primary">Power Forecasting</a>
                     </div>
 
                 </div>
@@ -142,17 +142,7 @@
                         <a href="{{ url_for('camera') }}" class="btn btn-primary">Video</a>
                     </div>
                 </div>
-                <!-- ControlPanel Item 6-->
-                <!-- <div class="col-md-6 col-lg-4">
-                    <div class="ControlPanel-item mx-auto" data-bs-toggle="modal" data-bs-target="#ControlPanelModal6">
-                        <div class="ControlPanel-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="ControlPanel-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/static/assets/safe.png" alt="..." />
-                    </div>
-                </div> -->
-                <!-- ControlPanel Item 7: Upload CSV -->
-                <!-- ControlPanel Item 7: Upload CSV -->
+                <!-- ControlPanel Item 6: Platform -->
                 <div class="col-md-6 col-lg-4">
                     <div class="ControlPanel-item mx-auto" data-bs-toggle="modal" data-bs-target="#ControlPanelModal6">
                         <div class="ControlPanel-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -183,35 +173,24 @@
             <!-- About Section Content-->
             <div class="row">
                 <div class="col-lg-4 ms-auto">
-                    <p class="lead">We are on the brink of total water scarcity and need more ways to save water. Volnix is a powerful water management system that can be used to save water. It is an IoT based device which measures soil moisture and based on the thresh
-                        hold set by the users it will water the plants. This is a step towards saving water and building a sustainable future.
+                    <p class="lead">We are facing challenges in energy management and need smarter solutions to integrate agriculture with renewable energy. 
+                        Agrivoltaics is an innovative microgrid system designed for recreational farms, aiming to improve energy efficiency and operational performance.
                     </p>
                 </div>
                 <div class="col-lg-4 me-auto">
-                    <p class="lead">It basically uses a sensor that senses the moisture content of the soil and when it is below the thresh hold level it automatically turns on the pump. Volnix can be monitored from any part of the world as it will be connected to the
-                        internet. This feature lets you monitor your crops remotely.
+                    <p class="lead">The system offers features like power generation forecasting, solar panel anomaly detection, and automated control.
+                         It uses advanced models to predict energy supply, monitors solar panel issues in real time to reduce maintenance costs, and employs LightController hardware to adjust lighting automatically based on ambient light conditions for energy savings.
                     </p>
                 </div>
                 <div class="col-lg-4 me-auto">
-                    <p class="lead">Most of the time we water plants irrespective of whether it is required or not. On summer days it might require more water and on cooler days it might require less water. The volnix makes sure this is done efficiently and water is
-                        not wasted. Not only that but also it can be implemented in the student's house so that he doesn't have to bother about watering the plants anymore.
+                    <p class="lead">Additionally, the system collects and analyzes operational data, presenting insights on a smart energy platform to support informed decision-making for farm operators. 
+                        Agrivoltaics sets a new standard for smart agriculture and sustainable energy management.
                     </p>
                 </div>
             </div>
             <!-- About Section Button-->
         </div>
     </section>
-
-
-    <!-- Copyright Maximus Section-->
-    <!-- <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Designed by &copy; Himanshu Tiwari</small></div>
-    </div> -->
-    <!-- ControlPanel Modals-->
-
-
-
-
 
     <!-- ControlPanel Modal 1  ON / OFF-->
     <div class="ControlPanel-modal modal fade" id="ControlPanelModal1" tabindex="-1" aria-labelledby="ControlPanelModal1" aria-hidden="true">
@@ -236,11 +215,6 @@
                                 <img class="img-fluid rounded mb-5" src="/static/assets/game.png" alt="..." />
                                 <!-- ControlPanel Modal - Text-->
                                 <p class="mb-4">This is used to find Anamoly Detection in Historical Data </p>
-                                <!-- <a href="/auto/water/Turn_ON"><button class="btn btn-primary"  data-bs-dismiss="modal" id="btn_on"></a> Turn ON Volnix-AWS
-                                </button>
-                                <button class="btn btn-primary" data-bs-dismiss="modal" id='btn_off'>
-                                        Turn OFF Volnix-AWS
-                                      </button> -->
                             </div>
                         </div>
                     </div>
@@ -264,7 +238,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- ControlPanel Modal - Title-->
-                                <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Yield Prediction</h2>
+                                <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">POWER GENERATION FORECASTING</h2>
                                 <br>
                                 <!-- Icon Divider-->
                                 <div class="volnix-custom">
@@ -275,10 +249,7 @@
                                 <!-- ControlPanel Modal - Image-->
                                 <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/submarine.png') }}" alt="..." />
                                 <!-- ControlPanel Modal - Text-->
-                                 <p class="mb-4">This is used to Predict the Yield</p>
-                                <!--<button class="btn btn-primary" href="/volnix_s" data-bs-dismiss="modal" id="volnix_s">
-                                        Check Soil Status
-                                    </button> -->
+                                 <p class="mb-4">This is used for power forecasting</p>
                             </div>
                         </div>
                     </div>
@@ -302,7 +273,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- ControlPanel Modal - Title-->
-                                <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Water Once </h2>
+                                <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Anamoly Detection Camera </h2>
                                 <br>
                                 <!-- Icon Divider-->
                                 <div class="volnix-custom">
@@ -313,10 +284,7 @@
                                 <!-- ControlPanel Modal - Image-->
                                 <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/circus.png') }}" alt="..." />
                                 <!-- ControlPanel Modal - Text-->
-                                <p class="mb-4">This is Analomy Detection using camera</p>
-                                <!-- <button class="btn btn-primary" href="/mannual" data-bs-dismiss="modal" id="mannual">
-                                        Water Once
-                                    </button> -->
+                                <p class="mb-4">This is Anamoly Detection using camera</p>
                             </div>
                         </div>
                     </div>
@@ -328,7 +296,7 @@
 
 
     <!-- ControlPanel Modal 4-->
-    <div class="ControlPanel-modal modal fade" id="ControlPanelModal4" tabindex="-1" aria-labelledby="ControlPanelModal4" aria-hidden="true">
+    <!-- <div class="ControlPanel-modal modal fade" id="ControlPanelModal4" tabindex="-1" aria-labelledby="ControlPanelModal4" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -336,22 +304,19 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <!-- ControlPanel Modal - Title-->
+                                
                                 <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Information</h2>
                                 <br>
-                                <!-- Icon Divider-->
+                              
                                 <div class="volnix-custom">
                                     <div class="volnix-custom-line"></div>
                                     <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
                                     <div class="volnix-custom-line"></div>
                                 </div>
-                                <!-- ControlPanel Modal - Image-->
+                           
                                 <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/cabin.png') }}" alt="..." />
-                                <!-- ControlPanel Modal - Text-->
+                                
                                 <p class="mb-4">Can have some info</p>
-                                <!-- <button class="btn btn-primary" href="https://edu.nthu-smart-farming.kits.tw/" data-bs-dismiss="modal" id="volnix_lw">
-                                        Platform Link
-                                    </button> -->
                             </div>
                         </div>
                     </div>
@@ -359,11 +324,49 @@
             </div>
         </div>
     </div>
+ -->
 
-
-
-
-
+<!-- ControlPanel Modal 4-->
+<div class="ControlPanel-modal modal fade" id="ControlPanelModal4" tabindex="-1" aria-labelledby="ControlPanelModal4" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <!-- ControlPanel Modal - Title-->
+                            <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Information</h2>
+                            <br>
+                            <!-- Icon Divider-->
+                            <div class="volnix-custom">
+                                <div class="volnix-custom-line"></div>
+                                <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="volnix-custom-line"></div>
+                            </div>
+                            <!-- ControlPanel Modal - Text -->
+                            <p class="mt-4">This is the Information PDF file.</p>
+                            <p class="mb-4">For more information, please refer to the document above.</p>
+                            <!-- ControlPanel Modal - PDF Viewer -->
+                            <div class="pdf-container mt-4">
+                                <iframe 
+                                    src="{{ url_for('static', filename='files/info.pdf') }}" 
+                                    width="100%" 
+                                    height="600px" 
+                                    style="border: none;">
+                                </iframe>
+                            </div>
+                            
+                            <a href="{{ url_for('static', filename='files/info.pdf') }}" target="_blank" class="btn btn-primary">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
     <!-- ControlPanel Modal 5-->
@@ -399,7 +402,7 @@
     </div>
 
  <!-- ControlPanel Modal 6-->
- <div class="ControlPanel-modal modal fade" id="ControlPanelModal6" tabindex="-1" aria-labelledby="ControlPanelModal6" aria-hidden="true">
+ <!-- <div class="ControlPanel-modal modal fade" id="ControlPanelModal6" tabindex="-1" aria-labelledby="ControlPanelModal6" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -407,17 +410,17 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <!-- ControlPanel Modal - Title-->
+                           
                             <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Platform</h2>
-                            <!-- Icon Divider-->
+                          
                             <div class="volnix-custom">
                                 <div class="volnix-custom-line"></div>
                                 <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
                                 <div class="volnix-custom-line"></div>
                             </div>
-                            <!-- ControlPanel Modal - Image-->
+                            
                             <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/safe.png') }}" alt="..." />
-                            <!-- ControlPanel Modal - Text-->
+                           
                             <p class="mb-4">To download the Dataset, visit the IoT Smart Campus Data Analysis Service Platform (物聯網智慧校園數據分析服務平台)</p>
                             <a class="btn btn-primary" href="https://edu.nthu-smart-farming.kits.tw/" >
                                 Platform Link
@@ -428,155 +431,83 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-
-
-
-    <!-- ControlPanel Modal 6 if you want to add more feature-->
-    <!-- <div class="ControlPanel-modal modal fade" id="ControlPanelModal6" tabindex="-1" aria-labelledby="ControlPanelModal6" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                               
-                                <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Credits </h2>
-                               
-                                <div class="volnix-custom">
-                                    <div class="volnix-custom-line"></div>
-                                    <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="volnix-custom-line"></div>
-                                </div>
-                                
-                                <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/safe.png') }}" alt="..." />
-                                
-                                <h2>Special Thanks:</h2>
-                                <p class="mb-4 text-start ">1. Himanshu Tiwari - Frontend Designed <br> 2.Wahib - Backend
-                                </p>
-                                <a class="btn btn-primary" href="https://www.linkedin.com/in/bugbounty/"  id='linkedin'>
-                                        Himanshu Tiwari
-                                    </a>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                        Wahib
-                                    </button>
+<!-- ControlPanel Modal 6-->
+<div class="ControlPanel-modal modal fade" id="ControlPanelModal6" tabindex="-1" aria-labelledby="ControlPanelModal6" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <!-- Modal Title -->
+                            <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Dataset Files</h2>
+                            <div class="volnix-custom">
+                                <div class="volnix-custom-line"></div>
+                                <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="volnix-custom-line"></div>
                             </div>
+
+                            <!-- Display Inverter Data -->
+                            <div class="table-responsive mt-4">
+                                <h4>Inverter Data</h4>
+                                <table class="table table-bordered table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            {% for column in inverter_headers %}
+                                            <th>{{ column }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in inverter_data %}
+                                        <tr>
+                                            {% for cell in row %}
+                                            <td>{{ cell }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Display Weather Data -->
+                            <div class="table-responsive mt-4">
+                                <h4>Weather Data</h4>
+                                <table class="table table-bordered table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            {% for column in weather_headers %}
+                                            <th>{{ column }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in weather_data %}
+                                        <tr>
+                                            {% for cell in row %}
+                                            <td>{{ cell }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Footer -->
+                            <p class="mt-4">For more datasets, visit the IoT Smart Campus Data Analysis Service Platform (物聯網智慧校園數據分析服務平台)</p>
+                            <a class="btn btn-secondary" href="https://edu.nthu-smart-farming.kits.tw/">Platform Link</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
-
-
-
-
-    <script type=text/javascript>
-        $('#btn_on').click(function() {
-
-
-
-            $.ajax({
-                url: '/auto/water/Turn_ON',
-
-                type: 'POST',
-                success: function(result) {
-                    console.log(result);
-                    $(".status").text(result["text"]);
-
-                }
-
-            });
-        });
-
-
-        $('#btn_off').click(function() {
-
-
-
-            $.ajax({
-                url: '/auto/water/Turn_OFF',
-
-                type: 'POST',
-                success: function(result) {
-                    console.log(result);
-                    $(".status").text(result["text"]);
-
-                }
-
-            });
-        });
-
-        $('#volnix_s').click(function() {
-
-
-
-            $.ajax({
-                url: 'volnix_s',
-
-                type: 'POST',
-                success: function(result) {
-                    console.log(result);
-                    $(".status").text(result["text"]);
-
-                }
-
-            });
-        });
-
-        $('#volnix_lw').click(function() {
-
-
-
-            $.ajax({
-                url: 'volnix_lw',
-
-                type: 'POST',
-                success: function(result) {
-                    console.log(result);
-                    $(".status").text(result["text"]);
-
-                }
-
-            });
-        });
-
-        $('#mannual').click(function() {
-
-
-
-            $.ajax({
-                url: 'mannual',
-
-                type: 'POST',
-                success: function(result) {
-                    console.log(result);
-                    $(".status").text(result["text"]);
-
-                }
-
-            });
-        });
-        $('#btn_on').click(function() {
-
-
-
-            $.ajax({
-                url: '/linkedin',
-
-                type: 'POST',
-                success: function(result) {
-                    console.log(result);
-                    $(".status").text(result["text"]);
-
-                }
-
-            });
-        });
-    </script>
-
+    </div>
+</div>
 
 
     <!-- Bootstrap core JS-->
