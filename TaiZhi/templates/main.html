@@ -152,7 +152,7 @@
                     </div>
                     <p></p>
                     <div class="volnix-btn text-center">
-                        <a href="{{ url_for('upload_file') }}" class="btn btn-primary">Dataset</a>
+                        <a href="https://edu.nthu-smart-farming.kits.tw/refresh-token?redirect=https://edu.nthu-smart-farming.kits.tw/homepage.html" class="btn btn-primary">Dataset</a>
                     </div>
                 </div>
 
@@ -212,7 +212,7 @@
                                     <div class="volnix-custom-line"></div>
                                 </div>
                                 <!-- ControlPanel Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="/static/assets/game.png" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="/static/assets/safe.png" alt="..." />
                                 <!-- ControlPanel Modal - Text-->
                                 <p class="mb-4">This is used to find Anamoly Detection in Historical Data </p>
                             </div>
@@ -370,7 +370,7 @@
 
 
     <!-- ControlPanel Modal 5-->
-    <div class="ControlPanel-modal modal fade" id="ControlPanelModal5" tabindex="-1" aria-labelledby="ControlPanelModal5" aria-hidden="true">
+    <!-- <div class="ControlPanel-modal modal fade" id="ControlPanelModal5" tabindex="-1" aria-labelledby="ControlPanelModal5" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -378,17 +378,17 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <!-- ControlPanel Modal - Title-->
+                               
                                 <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">YouTube</h2>
-                                <!-- Icon Divider-->
+                              
                                 <div class="volnix-custom">
                                     <div class="volnix-custom-line"></div>
                                     <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
                                     <div class="volnix-custom-line"></div>
                                 </div>
-                                <!-- ControlPanel Modal - Image-->
+                                
                                 <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/cake.png') }}" alt="..." />
-                                <!-- ControlPanel Modal - Text-->
+                            
                                 <p class="mb-4">Check out our video!!</p>
                                 <a class="btn btn-primary" href="https://www.youtube.com/watch?v=-OF_2oZi9VY" >
                                         YouTube
@@ -399,8 +399,43 @@
                 </div>
             </div>
         </div>
+    </div> -->
+    <div class="ControlPanel-modal modal fade" id="ControlPanelModal5" tabindex="-1" aria-labelledby="ControlPanelModal5" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- ControlPanel Modal - Title-->
+                                <h2 class="ControlPanel-modal-title text-secondary text-uppercase mb-0">Video</h2>
+                                <!-- Icon Divider-->
+                                <div class="volnix-custom">
+                                    <div class="volnix-custom-line"></div>
+                                    <div class="volnix-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="volnix-custom-line"></div>
+                                </div>
+                                <!-- ControlPanel Modal - Video-->
+                                <video class="img-fluid rounded mb-5" controls>
+                                    <source src="{{ url_for('static', filename='files/video.mp4') }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <!-- ControlPanel Modal - Text-->
+                                <p class="mb-4">Check out our video!!</p>
+                                <a class="btn btn-primary" href="https://drive.google.com/file/d/1yzUvmxQi6SJktLJ9Ol4giEySiw_K7To2/view?usp=sharing">
+                                    Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    
  <!-- ControlPanel Modal 6-->
  <!-- <div class="ControlPanel-modal modal fade" id="ControlPanelModal6" tabindex="-1" aria-labelledby="ControlPanelModal6" aria-hidden="true">
     <div class="modal-dialog modal-xl">
